@@ -2,25 +2,25 @@
 
 CREATE TABLE Usuario (
     id INT PRIMARY KEY,
-    email VARCHAR,
+    email VARCHAR(150),
     senha INT,
-    nome VARCHAR,
-    foto VARCHAR,
-    tel VARCHAR,
+    nome VARCHAR(150),
+    foto VARCHAR(150),
+    tel VARCHAR(150),
     cpf BIGINT UNIQUE
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Rifa (
     id INT PRIMARY KEY,
-    titulo VARCHAR,
-    descricao VARCHAR,
+    titulo VARCHAR(150),
+    descricao VARCHAR(150),
     quant_num INT,
     valor DOUBLE,
     data_criacao DATE,
     data_termino DATE,
     tempo_reserva TIME,
     fk_Usuario_id INT
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Pedido (
     id INT PRIMARY KEY,
@@ -28,41 +28,41 @@ CREATE TABLE Pedido (
     fk_Rifa_id INT,
     valor DOUBLE,
     status BOOL
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Colaborador (
     id INT PRIMARY KEY,
     fk_Usuario_id INT,
     fk_Rifa_id INT,
-    url VARCHAR,
+    url VARCHAR(150),
     saque BOOL
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Numero (
     numero INT,
     fk_Rifa_id INT,
     fk_Pedido_id INT,
     PRIMARY KEY (numero, fk_Rifa_id)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Tags (
-    nome VARCHAR PRIMARY KEY
-);
+    nome VARCHAR(150) PRIMARY KEY
+)ENGINE=InnoDB;
 
 CREATE TABLE Pedido_Colaborador (
     fk_Colaborador_id INT,
     fk_Pedido_id INT
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Rifa_Tags (
-    fk_Tags_nome VARCHAR,
+    fk_Tags_nome VARCHAR(150),
     fk_Rifa_id INT
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE Imagens (
     fk_Rifa_id INT,
-    link_img VARCHAR
-);
+    link_img VARCHAR(150)
+)ENGINE=InnoDB;
  
 ALTER TABLE Rifa ADD CONSTRAINT FK_Rifa_2
     FOREIGN KEY (fk_Usuario_id)
